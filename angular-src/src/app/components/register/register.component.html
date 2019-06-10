@@ -1,0 +1,12 @@
+<form (ngSubmit)="registerFormSubmit()" >
+    <div class="form-group">
+        <input type="text" class="form-control" id="name" placeholder="Name" required name="name"  [(ngModel)]="name">
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" placeholder="Email" required name="email"  [(ngModel)]="email" pattern="^\S*[@]\S*[.]\S*$">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="password" placeholder="Password" required name="password" name="password" [(ngModel)]="password">
+      </div>
+    <button type="submit" class="btn btn-primary" >Register</button>
+  </form>
