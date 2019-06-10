@@ -34,6 +34,9 @@ app.use('/users',user);
 app.get('/',(req,res)=>{
   res.send('Invalid Endpoint!');
 });
+app.get('*',req,res)=>{
+  res.sendFile('public/index.html');
+}
 
 // rest of routes
 app.get('*',(req,res)=>{
