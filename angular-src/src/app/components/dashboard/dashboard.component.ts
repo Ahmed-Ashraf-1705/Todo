@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
       completed : !item.completed,
       _id : item._id
     }
-    console.log(todo)
+    //console.log(todo)
     this.auth.updateStatus(todo,this.auth.user._id).subscribe( res =>{
       this.auth.getProfile().subscribe( (data:any)=>{ this.auth.user.todos = data.user.todos;this.todos = this.auth.user.todos;});
     });
