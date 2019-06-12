@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient , HttpHeaders } from '@angular/common/http';
+import { HttpClient , HttpHeaders , HttpRequest , HttpResponse} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +10,18 @@ export class AuthService {
   user:any;
   constructor(private http: HttpClient) { }
 
+  serverURL = 'http://localhost:3000/'
   // registration methond to submit data to nodejs api (backend)
   register(user){
     let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    return this.http.post('users/register', user, { headers : headers } );
+    headers = headers.append('Accept', 'application/json');
+    return this.http.post(this.serverURL+'users/register', user, { headers : headers } );
   }
 
   authenticate(user){
     let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    return this.http.post('users/authenticate', user, { headers : headers } );
+    headers = headers.append('Accept', 'application/json');
+    return this.http.post(this.serverURL+'users/authenticate', user, { headers : headers } );
   }
   storeUserData(token,user){
     localStorage.setItem('id_token',token);
@@ -30,15 +31,15 @@ export class AuthService {
   }
   getUserById(_id){
     let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    return this.http.post('users/getbyid',_id,{headers:headers})
+    headers = headers.append('Accept', 'application/json');
+    return this.http.post(this.serverURL+'users/getbyid',_id,{headers:headers})
   }
   getProfile(){
     this.loadToken()
-    let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    headers.set('Authorization', this.authToken);
-    return this.http.get('users/profile', {headers:headers} );
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('Authorization', this.authToken);
+    return this.http.get(this.serverURL+'users/profile', {headers:headers} )
   }
 
   loggedIn(){
@@ -65,22 +66,22 @@ export class AuthService {
       todo : data.todo
     }
     let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    return this.http.post('users/newtodo',todo, { headers : headers } );
+    headers = headers.append('Accept', 'application/json');
+    return this.http.post(this.serverURL+'users/newtodo',todo, { headers : headers } );
   }
 
   // list todos
   listTodos(_id){
     let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    return this.http.post('users/listtodos',_id, { headers : headers } );
+    headers = headers.append('Accept', 'application/json');
+    return this.http.post(this.serverURL+'users/listtodos',_id, { headers : headers } );
   }
 
   // edit todo
   editTodo(id,todo){
     let headers = new HttpHeaders();
-    headers.set('Content-Type','application/json');
-    return this.http.post('users/edittodo',{_id:id,todo:todo}, { headers : headers } );
+    headers = headers.append('Accept', 'application/json');
+    return this.http.post(this.serverURL+'users/edittodo',{_id:id,todo:todo}, { headers : headers } );
   }
   
 }

@@ -34,14 +34,10 @@ app.use('/users',user);
 app.get('/',(req,res)=>{
   res.send('Invalid Endpoint!');
 });
-app.get('*',req,res)=>{
-  res.sendFile('public/index.html');
-}
+//  app.get('*',req,res)=>{
+//    res.sendFile(path.joi(__dirname,'public/index.html'));
+//  }
 
-// rest of routes
-app.get('*',(req,res)=>{
-  res.sendFile(path.join(__dirname,'public/index.html'));
-});
 
 
 // initialize server at port 3000

@@ -4,10 +4,11 @@ var User = require('../models/user.model');
 var db = require('../config/connection.db');
 
 module.exports = function(passport){
-    let opts = {};
+    let opts = {
+        jwtFromRequest : ExtractJwt.fromAuthHeaderWithScheme("beerer"), // don't use jwt cause it causes error.
+        secretOrKey : db.secret
+    };
     
-    opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("beerer"); // don't use jwt cause it causes error.
-    opts.secretOrKey = db.secret;
     passport.use(new jwtStrategy(opts,(jwt_payload,done)=>{
         User.getUserById(jwt_payload._id,(err,user)=>{
             if(err){

@@ -1,17 +1,17 @@
 <div>
-    <button class="btn btn-outline-secondary" type="button" (click)="refresh()">Refresh</button>
+    <button class="btn btn-outline-secondary mb-3" type="button" (click)="refreshList()">Refresh</button>
 </div>
 <div *ngFor="let todo of todos">
-  <form (ngSubmit)="todoSubmit(todo._id,todo)">
+  <form (ngSubmit)="submit()">
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <div class="input-group-text">
-              <input type="checkbox" aria-label="Checkbox for following text input" name="completed" [(ngModel)]="todo.completed">
+              <input type="checkbox" class="todo" aria-label="Checkbox for following text input" name="completed" [(ngModel)]="todo.completed">
             </div>
           </div>
-          <input type="text" class="form-control" aria-label="Text input with checkbox" name="title" placeholder="Enter your todo!" [(ngModel)]="todo.title">
+          <div>{{todo.title}}</div>
           <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit">Edit Todo</button>
+              <button class="btn btn-outline-secondary todo-btn-submit" type="submit">{{btnText}}</button>
           </div>
       </div>
   </form>

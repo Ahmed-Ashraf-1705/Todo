@@ -8,18 +8,17 @@ import { NgFlashMessageService } from 'ng-flash-messages';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  todos:any = this.auth.user.todos;
+  todos;
+  btnText = 'Edit';
   constructor(private auth:AuthService,private ngFMS:NgFlashMessageService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+     this.todos = this.auth.user.todos;
+  }
 
-  refresh(){
-    let user:any = localStorage.getItem('user');
-    this.auth.getUserById(user._id).subscribe( (data:any)=>{
-      console.log(data)
-      this.todos = data.message;
-    },(err)=>{
-      console.log(err)
+  refreshList(){
+    this.auth.getProfile().subscribe( (data:any)=>{
+;      this.todos = data.user.todos;
     });
   }
   todoSubmit(_id,todo){
@@ -40,6 +39,13 @@ export class TodoListComponent implements OnInit {
         return false;
       }
     })
+  }
+  Submit(){
+    if(this.btnText == 'Edit'){
+      this.btnText = 'Save';
+    }else{
+      this.btnText = 'Edit';
+    }
   }
 
 

@@ -54,8 +54,8 @@ router.post('/authenticate', (req,res,next)=>{
 });
 
 // profile
-router.get('/profile',passport.authenticate('jwt'), (req,res,next)=>{
-    res.json({user : req.user});
+router.get('/profile',passport.authenticate('jwt',{ session: false }), (req,res,next)=>{
+    return res.json({user : req.user}); 
 });
 
 // get by id 
@@ -94,7 +94,13 @@ router.post('/listtodos',(req,res)=>{
         if(err){
             return res.json({success : false , message : err});
         }
-        return res.json({success: true, message : result});
+        if (result == null){
+            return res.json({success: false, message : "List is empty!"});
+        }else{
+            console.log(result)
+            return res.json({success: true, message : result});
+        }
+        
         
         
     });

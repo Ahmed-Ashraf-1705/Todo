@@ -21,11 +21,19 @@ export class TodoItemComponent implements OnInit {
   }
   todoSubmit(){
     
-    let data = {
+    let data:any = {
       email : this.email,
       todo: this.todo
     }
-    if(data.todo == []){
+    if ((data.todo.title == null || data.todo.title == '')){
+      this.ngFMS.showFlashMessage({
+        messages:["cannot add empty todo"],
+        timeout: 3000,
+        type: 'danger'
+      });
+
+    }else{
+      if(data.todo == []){
         this.ngFMS.showFlashMessage({
           messages:["cannot add empty todo!"],
           timeout: 3000,
@@ -54,6 +62,7 @@ export class TodoItemComponent implements OnInit {
           type: 'danger'
         });
       });
+    }
     }
   }
 
