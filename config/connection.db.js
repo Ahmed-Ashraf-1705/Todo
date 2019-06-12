@@ -14,7 +14,7 @@ mongoose.connection.on('connected',()=>{
     console.log('Database connection established!');
 });
 // settind some configurations for mongodb
-//mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false);
 
 // when error happens
 mongoose.connection.on('error',err=>{

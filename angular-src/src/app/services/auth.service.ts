@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient , HttpHeaders , HttpRequest , HttpResponse} from '@angular/common/http';
+import { map } from 'rxjs-compat/operators/map';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +69,16 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
     return this.http.post(this.serverURL+'users/newtodo',todo, { headers : headers } );
+  }
+  updateStatus(todo,userId){
+    let task = {
+      userID: userId,
+      _id : todo._id,
+      todo : todo
+    }
+    let headers = new HttpHeaders();
+    headers = headers.append('Accept', 'application/json');
+    return this.http.post(this.serverURL+'users/edittodo', task, { headers : headers } );
   }
 
   // list todos

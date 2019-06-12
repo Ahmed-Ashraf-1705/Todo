@@ -16,7 +16,6 @@ var userSchema = mongoose.Schema({
         required: true
         
     },todos : [{
-        _id: false,
         completed : { type:Boolean,
             default:false 
         },
@@ -70,15 +69,22 @@ User.newTodo = function(email,todo,callback){
 }
 
 // edit todo
-User.editTodo = function(todoId,todo,callback){
-    User.findOneAndUpdate({_id:todoId},{$set:{todo}},(err,result)=>{
-        if(err){
-            console.log('Error happened when update todo, details:'+err);
-            callback('Server error!');
-        }else{
-            callback('success!'); // send data with callback
+User.updateTodo = function(userId,todo_id,todo,callback){
+    User.findOne({_id :userId},(err,doc)=>{
+        if (err){
+            console.log('err')
+        } else{
+            
+            
+            User.updateOne({'_id':doc._id,'todos._id':todo_id},{$set:{'todos.$.completed':todo.completed}},(err,res)=>{
+                if(err){
+                    callback('error happened');
+                }else{
+                    //console.log( 'success'+JSON.stringify(res))
+                }
+            });
         }
-    });
+    })
 }
 
 // list todos

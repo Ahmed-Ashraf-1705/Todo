@@ -107,12 +107,14 @@ router.post('/listtodos',(req,res)=>{
 });
 // edit todo
 router.post('/edittodo',(req,res)=>{
-    let todoId = req.body.todoId;
+    let userId = req.body.userID;
+    let todo_id = req.body._id;
     let todo = req.body.todo;
-    User.editTodo(todoId,(err,result)=>{
+    User.updateTodo(userId,todo_id,todo,(err,result)=>{
         if(err){
             return res.json({success : false , message : err});
         }
+
         return res.json({success: true, message : result});
     });
 });

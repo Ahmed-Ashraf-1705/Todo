@@ -1,2 +1,28 @@
-<app-todo-item></app-todo-item>
-<app-todo-list></app-todo-list>
+<form (ngSubmit)="todoSubmit()">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+            <input type="checkbox" aria-label="Checkbox for following text input" name="completed" [(ngModel)]="todo.completed">
+            </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Text input with checkbox" name="todo" placeholder="Enter your todo!" [(ngModel)]="todo.title">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Save</button>
+        </div>
+    </div>
+</form>
+
+<div *ngFor="let todo of todos">
+        <form>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <div>
+                    <p> 
+                      <input type="checkbox" class="mr-3" (click)="updateTaskStatus(todo)"  name="completed" [checked]="todo.completed">
+                      {{todo.title}}
+                    </p>
+                  </div>
+                </div>
+            </div>
+        </form>
+      </div>

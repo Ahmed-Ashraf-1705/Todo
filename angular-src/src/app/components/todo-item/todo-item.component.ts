@@ -47,7 +47,6 @@ export class TodoItemComponent implements OnInit {
             timeout: 3000,
             type: 'success'
           });
-          this.router.navigate(['/dashboard'])
         }else{
           this.ngFMS.showFlashMessage({
             messages:[res.message],
