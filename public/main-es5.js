@@ -369,14 +369,15 @@ var DashboardComponent = /** @class */ (function () {
         }
     };
     DashboardComponent.prototype.updateTaskStatus = function (item) {
+        var _this = this;
         var todo = {
             title: item.title,
             completed: !item.completed,
             _id: item._id
         };
-        console.log(todo);
-        this.auth.updateStatus(todo, this.auth.user._id).subscribe(function (data) {
-            //console.log(data);;
+        //console.log(todo)
+        this.auth.updateStatus(todo, this.auth.user._id).subscribe(function (res) {
+            _this.auth.getProfile().subscribe(function (data) { _this.auth.user.todos = data.user.todos; _this.todos = _this.auth.user.todos; });
         });
     };
     DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
