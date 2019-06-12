@@ -10,8 +10,10 @@ var user = require('./routes/user.routes');
 const db = require('./config/connection.db');
 
 // setting port
-const port = 3000;
-
+// for deploying in localhost
+//const port = 3000;
+// for deploying in heroku
+const port = process.env.PORT || 8080;
 // middleware
 //    cors 
 app.use(cors());

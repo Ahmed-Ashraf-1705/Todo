@@ -10,8 +10,9 @@ export class AuthService {
   authToken:any;
   user:any;
   constructor(private http: HttpClient) { }
-
-  serverURL = 'http://localhost:3000/'
+  // for localhost
+  //serverURL = 'http://localhost:3000/'
+  serverURL = '';
   // registration methond to submit data to nodejs api (backend)
   register(user){
     let headers = new HttpHeaders();
