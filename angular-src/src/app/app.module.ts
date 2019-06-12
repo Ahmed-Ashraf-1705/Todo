@@ -6,8 +6,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { TodoListComponent } from './components/todo-list/todo-list.component';
-import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { ValidationService } from './services/validation.service';
@@ -26,8 +24,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    TodoListComponent,
-    TodoItemComponent,
     ProfileComponent,
     DashboardComponent,
   ],
