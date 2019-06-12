@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 
 
 //var dbUrl = 'mongodb+srv://todoAPI:todoAPI@cluster0-hfclw.mongodb.net/todoApp';
-var dbUrl = 'mongodb://localhost:27017/TODO';
+// for localhost database
+//var dbUrl = 'mongodb://localhost:27017/TODO';
+var dbUrl = "mongodb+srv://todoApp:17051998_A_A@cluster0-f6tj0.mongodb.net/test?retryWrites=true&w=majority";
 
 mongoose.connect(dbUrl,{useCreateIndex: true, useNewUrlParser: true });
 
